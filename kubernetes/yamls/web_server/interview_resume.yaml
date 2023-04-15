@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: resume
+  namespace: interview
+  labels:
+    service: resume
+    project : interview
+spec:
+  type: NodePort
+  selector:
+    service: resume
+    project: interview
+  ports:
+  - port: 80
+    targetPort: 80
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resume
+  namespace: interview
+  labels:
+    service: resume
+    project: interview
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      service: resume
+      project: interview
+  template:
+    metadata:
+      labels:
+        service: resume
+        project: interview
+    spec:
+      containers:
+      - name: resume
+        image: wjdals9058/interview:01
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "50m"
+

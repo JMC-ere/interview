@@ -1,1 +1,2 @@
-FROM nginx:1.14.2
+FROM wjdals9058/interview:01
+

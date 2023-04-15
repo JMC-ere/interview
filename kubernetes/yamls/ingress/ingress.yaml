@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: interview
+  namespace: interview
+  labels:
+    project: interview
+spec:
+  defaultBackend:
+    service:
+      name: resume
+      port:
+        number: 80
+  rules:
+    - host: interview.resume.com
+      http:
+        paths:
+        - pathType: Prefix
+          path: /
+          backend:
+            service:
+              name: resume
+              port:
+                number: 80
+
+
+    

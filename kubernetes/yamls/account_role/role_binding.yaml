@@ -1,0 +1,16 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: resume_role_binding
+  namespace: interview
+subjects:
+- kind: ServiceAccount
+  name: service-resume
+  namespace: interview
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: system:serviceaccount:interview:service-resume
+roleRef:
+  kind: Role
+  name: resume_role
+  apiGroup: rbac.authorization.k8s.io
